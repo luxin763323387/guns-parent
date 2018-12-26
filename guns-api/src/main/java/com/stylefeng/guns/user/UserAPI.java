@@ -1,5 +1,8 @@
 package com.stylefeng.guns.user;
 
+import com.stylefeng.guns.user.vo.UserInfoModel;
+import com.stylefeng.guns.user.vo.UserModel;
+
 /**
  * @author Steven Lu
  * @date 2018/12/17 -20:16

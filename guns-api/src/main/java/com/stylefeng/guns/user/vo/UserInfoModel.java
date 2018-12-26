@@ -1,4 +1,4 @@
-package com.stylefeng.guns.user;
+package com.stylefeng.guns.user.vo;
 
 
 /**
