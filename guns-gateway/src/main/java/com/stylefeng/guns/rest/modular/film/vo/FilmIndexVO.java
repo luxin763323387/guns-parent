@@ -1,16 +1,16 @@
 package com.stylefeng.guns.rest.modular.film.vo;
 
-import com.stylefeng.guns.film.vo.BannersVO;
+import com.stylefeng.guns.film.vo.BannerVO;
 import com.stylefeng.guns.film.vo.FilmInfo;
-import com.stylefeng.guns.film.vo.FilmVo;
+import com.stylefeng.guns.film.vo.FilmVO;
 
 import java.util.List;
 
 public class FilmIndexVO {
 
-    private List<BannersVO> banners;
-    private FilmVo hotFilms;
-    private FilmVo soonFilms ;
+    private List<BannerVO> banners;
+    private FilmVO hotFilms;
+    private FilmVO soonFilms ;
     private List<FilmInfo> boxRanking;
     private List<FilmInfo> expectRanking;
     private List<FilmInfo> top100;
