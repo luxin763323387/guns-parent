@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stevenlu
- * @since 2019-01-02
+ * @since 2019-01-07
  */
 @TableName("mooc_actor_t")
 public class MoocActorT extends Model<MoocActorT> {

@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stevenlu
- * @since 2019-01-02
+ * @since 2019-01-07
  */
 @TableName("mooc_banner_t")
 public class MoocBannerT extends Model<MoocBannerT> {

@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author stevenlu
- * @since 2019-01-02
+ * @since 2019-01-07
  */
 public interface MoocActorTMapper extends BaseMapper<MoocActorT> {
 

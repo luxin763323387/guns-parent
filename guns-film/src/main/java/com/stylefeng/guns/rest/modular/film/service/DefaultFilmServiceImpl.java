@@ -169,16 +169,16 @@ public class DefaultFilmServiceImpl implements FilmServiceAPI {
     }
 
 
-    //获取top10(评分的前10)
+    //获取top100(评分的前100)
     @Override
     public List<FilmInfo> getTop() {
         List<FilmInfo> filmInfos = new ArrayList<>();
 
-        //条件 -> 正在上映， 评分前十
+        //条件 -> 正在上映， 评分前100
         EntityWrapper<MoocFilmT> entityWrapper = new EntityWrapper<>();
         entityWrapper.eq("film_status","1");
 
-        Page<MoocFilmT> page = new Page<>(1,10,"film_score");
+        Page<MoocFilmT> page = new Page<>(1,100,"film_score");
         List<MoocFilmT> moocFilms = moocFilmTMapper.selectPage(page, entityWrapper);
 
         //组织filminfos

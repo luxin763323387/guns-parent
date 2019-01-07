@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stevenlu
- * @since 2019-01-02
+ * @since 2019-01-07
  */
 @TableName("mooc_year_dict_t")
 public class MoocYearDictT extends Model<MoocYearDictT> {

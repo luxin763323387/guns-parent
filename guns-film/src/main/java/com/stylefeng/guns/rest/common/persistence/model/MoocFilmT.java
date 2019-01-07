@@ -14,7 +14,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stevenlu
- * @since 2019-01-02
+ * @since 2019-01-07
  */
 @TableName("mooc_film_t")
 public class MoocFilmT extends Model<MoocFilmT> {

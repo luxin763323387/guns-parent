@@ -110,7 +110,7 @@ public class  UserServiceImpl implements UserAPI {
         }
     }
 
-    //获取userInfoModel(数据放入获取userInfoModel)
+    //获取userInfoModel(数据放入   获取userInfoModel)
     private UserInfoModel do2UserInfo(MoocUserT moocUserT) {
         UserInfoModel userInfoModel = new UserInfoModel();
 
