@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stevenlu
- * @since 2019-01-07
+ * @since 2019-01-08
  */
 @TableName("mooc_source_dict_t")
 public class MoocSourceDictT extends Model<MoocSourceDictT> {

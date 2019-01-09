@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author stevenlu
- * @since 2019-01-07
+ * @since 2019-01-08
  */
 public interface MoocSourceDictTMapper extends BaseMapper<MoocSourceDictT> {
 
