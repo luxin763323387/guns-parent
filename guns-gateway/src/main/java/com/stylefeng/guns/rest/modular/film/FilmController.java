@@ -7,6 +7,7 @@ import com.stylefeng.guns.rest.modular.film.vo.FilmIndexVO;
 import com.stylefeng.guns.rest.modular.vo.ResponseVO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -23,7 +24,7 @@ public class FilmController {
     *
     *   坏处: 一次获取数据过多，如意出现问题
     * */
-
+    private static final String IMG_PRE = "http://img.meetingshop.cn/";
 
     @Reference(interfaceClass = FilmServiceAPI.class,check = false)
         private FilmServiceAPI filmServiceAPI;
@@ -51,7 +52,20 @@ public class FilmController {
         filmIndexVO.setTop10(filmServiceAPI.getTop());
 
 
-        return ResponseVO.success(filmIndexVO);
+        return ResponseVO.success(IMG_PRE,filmIndexVO);
+    }
+
+    @RequestMapping(value = "getConditionList", method = RequestMethod.GET)
+    public ResponseVO getConditionList(@RequestParam(name =  "catId", required = false,defaultValue = "99")String catId,
+                                                                 @RequestParam(name =  "sourceId", required = false,defaultValue = "99")String sourceId,
+                                                                 @RequestParam(name =  "yearId", required = false,defaultValue = "99")String yearId){
+        //获取类型列表
+
+        //获取片源列表
+
+        //获取年代列表
+
+        return null;
     }
 }
 

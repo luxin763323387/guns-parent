@@ -1,9 +1,12 @@
 package com.stylefeng.guns.rest.modular.vo;
 
+import lombok.Data;
+
 /**
  * @author Steven Lu
  * @date 2018/12/18 -13:12
  */
+@Data
 public class ResponseVO<M> {
 
     //返回状态[0 成功， 1 业务失败， 999 表示系统异常]
@@ -12,6 +15,8 @@ public class ResponseVO<M> {
     private String msg;
     //返回实体
     private M date;
+    //返回图片
+    private String imgPre;
 
     //单例模式
     private ResponseVO(){};
@@ -22,6 +27,14 @@ public class ResponseVO<M> {
         responseVO.setStatus(0);
         responseVO.setDate(m);
 
+        return responseVO;
+    }
+
+    public static<M> ResponseVO success(String imgPre, M m){
+        ResponseVO responseVO = new ResponseVO();
+        responseVO.setStatus(0);
+        responseVO.setDate(m);
+        responseVO.setImgPre(imgPre);
         return responseVO;
     }
 
@@ -51,27 +64,5 @@ public class ResponseVO<M> {
         return responseVO;
     }
 
-    public int getStatus() {
-        return status;
-    }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public M getDate() {
-        return date;
-    }
-
-    public void setDate(M date) {
-        this.date = date;
-    }
 }
