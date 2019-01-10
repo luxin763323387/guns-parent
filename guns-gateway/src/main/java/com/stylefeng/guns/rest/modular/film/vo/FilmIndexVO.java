@@ -15,6 +15,6 @@ public class FilmIndexVO {
     private FilmVO soonFilms ;
     private List<FilmInfo> boxRanking;
     private List<FilmInfo> expectRanking;
-    private List<FilmInfo> top10;
+    private List<FilmInfo> top100;
 
 }

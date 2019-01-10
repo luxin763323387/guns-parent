@@ -129,7 +129,7 @@ public class DefaultFilmServiceImpl implements FilmServiceAPI {
             filmVO.setFilmInfos(filmInfos);
 
         }else {
-            //如果不是，则是列表页，同样需要限制内容为热映影片
+            //如果不是，则是列表页，同样需要限制内容为即将上映映影片
 
         }
         return filmVO;
@@ -140,7 +140,7 @@ public class DefaultFilmServiceImpl implements FilmServiceAPI {
     public List<FilmInfo> getboxRanking() {
         List<FilmInfo> filmInfos = new ArrayList<>();
 
-        //条件 -> 正在上映， 票房前10
+        //条件 -> 正在上映， 票房前100
         EntityWrapper<MoocFilmT> entityWrapper = new EntityWrapper<>();
         entityWrapper.eq("film_status","1");
 

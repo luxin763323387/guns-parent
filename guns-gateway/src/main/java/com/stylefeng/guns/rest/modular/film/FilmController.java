@@ -3,12 +3,19 @@ package com.stylefeng.guns.rest.modular.film;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.stylefeng.guns.film.FilmServiceAPI;
+import com.stylefeng.guns.film.vo.CatVO;
+import com.stylefeng.guns.film.vo.SourceVO;
+import com.stylefeng.guns.film.vo.YearVO;
+import com.stylefeng.guns.rest.modular.film.vo.FilmConditionVo;
 import com.stylefeng.guns.rest.modular.film.vo.FilmIndexVO;
 import com.stylefeng.guns.rest.modular.vo.ResponseVO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/film/")
@@ -46,10 +53,10 @@ public class FilmController {
         filmIndexVO.setBoxRanking(filmServiceAPI.getboxRanking());
 
         //获取boxRanking 受欢迎排行榜
-        filmIndexVO.setExpectRanking(filmIndexVO.getExpectRanking());
+        filmIndexVO.setExpectRanking(filmServiceAPI.getExpectRanking());
 
         //获取top100 前100
-        filmIndexVO.setTop10(filmServiceAPI.getTop());
+        filmIndexVO.setTop100(filmServiceAPI.getTop());
 
 
         return ResponseVO.success(IMG_PRE,filmIndexVO);
@@ -59,13 +66,98 @@ public class FilmController {
     public ResponseVO getConditionList(@RequestParam(name =  "catId", required = false,defaultValue = "99")String catId,
                                                                  @RequestParam(name =  "sourceId", required = false,defaultValue = "99")String sourceId,
                                                                  @RequestParam(name =  "yearId", required = false,defaultValue = "99")String yearId){
+
+        FilmConditionVo filmConditionVo = new FilmConditionVo();
         //获取类型列表
+        //获取 catId="99"的影片 如果为99 设置为active 为true
+        //标识位置
+        boolean flag = false;
+        List<CatVO> catResult = new ArrayList<>();
+        List<CatVO> catsList = filmServiceAPI.getCatsList();
+        CatVO cat = null;
+        for(CatVO catVO : catsList){
+            if(catVO.getCatId().equals("99")) {    //跳过
+                cat = catVO;
+                continue;
+            }
+            if(catVO.getCatId().equals(catId)){
+                flag = true;
+                catVO.setActive(true);
+            }else {
+                catVO.setActive(false);
+            }
+            catResult.add(catVO);
+        }
+
+        //如果没有catId = "99" active 为false
+        if(!flag){
+            cat.setActive(true);
+            catResult.add(cat);
+        }else {
+            cat.setActive(false);
+            catResult.add(cat);
+        }
+
 
         //获取片源列表
+         flag = false;
+        List<SourceVO> sourcesList = filmServiceAPI.getSourcesList();
+        List<SourceVO> sourceResult  =  new ArrayList<>();
+        SourceVO source = null;
+        for(SourceVO sourceVO : sourcesList){
+            if(sourceVO.getSourceId().equals("99")){
+                source = sourceVO;
+                continue;
+            }
+
+            if(sourceVO.getSourceId().equals(sourceId)){
+                flag = true;
+                sourceVO.setActive(true);
+            }else {
+                sourceVO.setActive(false);
+            }
+            sourceResult.add(sourceVO);
+        }
+
+        if(!flag){
+            source.setActive(true);
+            sourceResult.add(source);
+        }else {
+            source.setActive(false);
+            sourceResult.add(source);
+        }
 
         //获取年代列表
+        flag = false;
+        List<YearVO> yearResult = new ArrayList<>();
+        List<YearVO> yearsList = filmServiceAPI.getYearsList();
+        YearVO year = null;
+        for(YearVO yearVO : yearsList){
+            if(yearVO.getYearId().equals("99")){
+                year = yearVO;
+                continue;
+            }
 
-        return null;
+            if(yearVO.getYearId().equals(yearId)){
+                flag = true;
+                yearVO.setActive(true);
+            }
+            yearResult.add(yearVO);
+        }
+
+        if(!flag) {
+            year.setActive(true);
+            yearResult.add(year);
+        }else {
+            year.setActive(false);
+            yearResult.add(year);
+        }
+
+        filmConditionVo.setCatInfo(catResult);
+        filmConditionVo.setSourceInfo(sourceResult);
+        filmConditionVo.setYearInfo(yearResult);
+
+        return ResponseVO.success(filmConditionVo);
     }
 }
 
