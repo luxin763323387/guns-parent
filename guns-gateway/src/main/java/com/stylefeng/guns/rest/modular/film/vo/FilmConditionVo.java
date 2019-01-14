@@ -8,6 +8,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
+//condition->条件
 public class FilmConditionVo {
     private List<CatVO>  catInfo;
     private List<SourceVO>  sourceInfo;

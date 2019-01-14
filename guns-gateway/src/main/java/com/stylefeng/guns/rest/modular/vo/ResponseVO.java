@@ -17,6 +17,9 @@ public class ResponseVO<M> {
     private M date;
     //返回图片
     private String imgPre;
+    //返回分页
+    private int  nowPage;
+    private int  totalPage;
 
     //单例模式
     private ResponseVO(){};
@@ -37,6 +40,17 @@ public class ResponseVO<M> {
         responseVO.setImgPre(imgPre);
         return responseVO;
     }
+
+    public static<M> ResponseVO success(int nowPage, int totalPage, String imgPre, M m){
+        ResponseVO responseVO = new ResponseVO();
+        responseVO.setStatus(0);
+        responseVO.setDate(m);
+        responseVO.setImgPre(imgPre);
+        responseVO.setNowPage(nowPage);
+        responseVO.setTotalPage(totalPage);
+        return responseVO;
+    }
+
 
     public static<M> ResponseVO success(String msg ){
         ResponseVO responseVO = new ResponseVO();
