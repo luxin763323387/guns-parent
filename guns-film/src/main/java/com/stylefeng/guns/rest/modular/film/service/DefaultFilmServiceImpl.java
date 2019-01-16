@@ -279,7 +279,10 @@ public class DefaultFilmServiceImpl implements FilmServiceAPI {
         return filmVO;
     }
 
-    //获取票房排行榜(以上映)
+    /**
+     * 获取票房排行榜(以上映)
+     * @return
+     */
     @Override
     public List<FilmInfo> getboxRanking() {
         List<FilmInfo> filmInfos = new ArrayList<>();
@@ -297,7 +300,10 @@ public class DefaultFilmServiceImpl implements FilmServiceAPI {
         return filmInfos;
     }
 
-    //获取人气排行榜(没上映)
+    /**
+     * 获取人气排行榜(没上映)
+     * @return
+     */
     @Override
     public List<FilmInfo> getExpectRanking() {
         List<FilmInfo> filmInfos = new ArrayList<>();
@@ -315,7 +321,10 @@ public class DefaultFilmServiceImpl implements FilmServiceAPI {
         return filmInfos;
     }
 
-    //获取top100(评分的前100)
+    /**
+     *  获取top100(评分的前100)
+     * @return
+     */
     @Override
     public List<FilmInfo> getTop() {
         List<FilmInfo> filmInfos = new ArrayList<>();
@@ -333,6 +342,10 @@ public class DefaultFilmServiceImpl implements FilmServiceAPI {
         return filmInfos;
     }
 
+    /**
+     * 通过分类别
+     * @return
+     */
     @Override
     public List<CatVO> getCatsList() {
         List<CatVO> cats = new ArrayList<>();
@@ -348,6 +361,10 @@ public class DefaultFilmServiceImpl implements FilmServiceAPI {
         return cats;
     }
 
+    /**
+     *  通过分地区的大片
+     * @return
+     */
     @Override
     public List<SourceVO> getSourcesList() {
         List<SourceVO> sources = new ArrayList<>();
@@ -361,6 +378,10 @@ public class DefaultFilmServiceImpl implements FilmServiceAPI {
         return sources;
     }
 
+    /**
+     * 通过分年代的电影
+     * @return
+     */
     @Override
     public List<YearVO> getYearsList() {
         List<YearVO> years = new ArrayList<>();
@@ -372,6 +393,23 @@ public class DefaultFilmServiceImpl implements FilmServiceAPI {
             years.add(yearVO);
         }
         return years;
+    }
+
+    /**
+     * 影片详情查询  0->按编号查询 1->按年代查询
+     * @param searchType
+     * @param searchParam
+     * @return
+     */
+    @Override
+    public FilmDetailVO getFilmDetail(int searchType, String searchParam) {
+        FilmDetailVO filmDetailVO = null;
+        if(searchType == 1){
+            filmDetailVO = moocFilmTMapper.getFilmDetailByName(searchParam);
+        }else {
+            filmDetailVO = moocFilmTMapper.getFilmDetailById(searchParam);
+        }
+        return filmDetailVO;
     }
 
 }

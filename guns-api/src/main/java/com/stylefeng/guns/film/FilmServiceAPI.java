@@ -37,4 +37,7 @@ public interface FilmServiceAPI {
 
     //获取年代集合
     List<YearVO> getYearsList();
+
+    //影片详情查询接口
+    FilmDetailVO getFilmDetail(int searchType,String searchParam );
 }
