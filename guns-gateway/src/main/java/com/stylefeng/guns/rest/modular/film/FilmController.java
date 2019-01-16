@@ -3,18 +3,12 @@ package com.stylefeng.guns.rest.modular.film;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.stylefeng.guns.film.FilmServiceAPI;
-import com.stylefeng.guns.film.vo.CatVO;
-import com.stylefeng.guns.film.vo.FilmVO;
-import com.stylefeng.guns.film.vo.SourceVO;
-import com.stylefeng.guns.film.vo.YearVO;
+import com.stylefeng.guns.film.vo.*;
 import com.stylefeng.guns.rest.modular.film.vo.FilmConditionVo;
 import com.stylefeng.guns.rest.modular.film.vo.FilmIndexVO;
 import com.stylefeng.guns.rest.modular.film.vo.FilmRequetVo;
 import com.stylefeng.guns.rest.modular.vo.ResponseVO;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +30,10 @@ public class FilmController {
     @Reference(interfaceClass = FilmServiceAPI.class, check = false)
     private FilmServiceAPI filmServiceAPI;
 
+    /**
+     * 1、首页接口
+     * @return
+     */
     @RequestMapping(value = "getIndex", method = RequestMethod.GET)
     public ResponseVO<FilmIndexVO> getIndex() {
         FilmIndexVO filmIndexVO = new FilmIndexVO();
@@ -61,6 +59,13 @@ public class FilmController {
         return ResponseVO.success(IMG_PRE, filmIndexVO);
     }
 
+    /**
+     * 影片条件列表查询接口
+     * @param catId
+     * @param sourceId
+     * @param yearId
+     * @return
+     */
     @RequestMapping(value = "getConditionList", method = RequestMethod.GET)
     public ResponseVO getConditionList(@RequestParam(name = "catId", required = false, defaultValue = "99") String catId,
                                        @RequestParam(name = "sourceId", required = false, defaultValue = "99") String sourceId,
@@ -158,6 +163,11 @@ public class FilmController {
         return ResponseVO.success(filmConditionVo);
     }
 
+    /**
+     * 影片查询接口
+     * @param filmRequetVo
+     * @return
+     */
     @RequestMapping(value = "getFilms", method = RequestMethod.GET)
     public ResponseVO getFilms(FilmRequetVo filmRequetVo) {
         String img_pre = "http://img.meetingshop.cn/";
@@ -185,6 +195,19 @@ public class FilmController {
                 break;
         }
         return ResponseVO.success(filmVO.getNowPage(), filmVO.getTotalPage(), img_pre, filmVO.getFilmInfo());
+    }
+
+
+    //4、影片详情查询接口
+    @RequestMapping(value = "films/{searchParam}", method = RequestMethod.GET)
+    public ResponseVO films(@PathVariable("searchParam") String searchParam, int searchType ){
+
+        //根据searchType ->1 ,名称查询查询
+        FilmDetailVO filmDetail = filmServiceAPI.getFilmDetail(searchType, searchParam);
+        //根据不同的查询类 ->2，联合查询
+
+        //查询影片的详细信息 -> Dubbo的异步获取
+        return null;
     }
 
 }
