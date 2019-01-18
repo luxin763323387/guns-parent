@@ -204,10 +204,34 @@ public class FilmController {
 
         //根据searchType ->1 ,名称查询查询
         FilmDetailVO filmDetail = filmServiceAPI.getFilmDetail(searchType, searchParam);
-        //根据不同的查询类 ->2，联合查询
 
+        String filmId = filmDetail.getFilmId();
         //查询影片的详细信息 -> Dubbo的异步获取
-        return null;
+        //获取影片描述信息
+        FilmDescVO filmDescVO = filmServiceAPI.getFilmDesc(filmId);
+        //获取导演信息
+        ActorsVO director = filmServiceAPI.getDirector(filmId);
+        //获取演员
+        List<ActorsVO> actors = filmServiceAPI.getActors(filmId);
+        //获取图片
+        ImgsVO imgsVO = filmServiceAPI.getImgs(filmId);
+
+        //组织info对象
+        InfoRequstVO infoRequstVO = new InfoRequstVO();
+        //组织Actor属性
+        ActorRequestVO actorRequestVO = new ActorRequestVO();
+        actorRequestVO.setActors(actors);
+        actorRequestVO.setDirector(director);
+
+        //组织info对象
+        infoRequstVO.setActors(actorRequestVO);
+        infoRequstVO.setBiography(filmDescVO.getBiography());
+        infoRequstVO.setFilmId(filmId);
+        infoRequstVO.setImgsVO(imgsVO);
+
+        filmDetail.setInfo04(infoRequstVO);
+
+        return ResponseVO.success("http://img.meetingshop.cn/",filmDetail);
     }
 
 }

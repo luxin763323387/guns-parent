@@ -16,7 +16,7 @@ import java.io.Serializable;
  * @since 2019-01-07
  */
 @TableName("mooc_film_info_t")
-public class MoocFilmInfoT extends Model<MoocFilmInfoT> {
+public class  MoocFilmInfoT extends Model<MoocFilmInfoT> {
 
     private static final long serialVersionUID = 1L;
 

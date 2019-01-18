@@ -47,7 +47,7 @@ public class AuthFilter extends OncePerRequestFilter {
         //  例如/user/register  注册不要jwt
         String[] ignoreUrls = ignoreUrl.split(","); //String分解方法
         for(int i = 0; i < ignoreUrls.length; i++) {
-            if (request.getServletPath().equals(ignoreUrls[i])){
+            if (request.getServletPath().startsWith(ignoreUrls[i])){
                 chain.doFilter(request, response);
             }
         }

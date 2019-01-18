@@ -40,4 +40,16 @@ public interface FilmServiceAPI {
 
     //影片详情查询接口
     FilmDetailVO getFilmDetail(int searchType,String searchParam );
+
+    //影片介绍 id查询
+    FilmDescVO getFilmDesc(String filmId);
+
+    //影片导演信息查询
+    ActorsVO getDirector(String filmId);
+
+    //影片演员信息查询
+    List<ActorsVO> getActors(String filmId);
+
+    //影片图片查询
+    ImgsVO getImgs(String filmId);
 }

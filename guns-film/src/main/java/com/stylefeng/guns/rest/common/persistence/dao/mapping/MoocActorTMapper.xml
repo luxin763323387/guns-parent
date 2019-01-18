@@ -9,4 +9,13 @@
         <result column="actor_img" property="actorImg" />
     </resultMap>
 
+    <select id="getActors" parameterType="java.lang.String" resultType="com.stylefeng.guns.film.vo.ActorsVO">
+              SELECT actor_img as imgAddress,
+                           actor_name as directorName,
+                           role_name as roleName
+              FROM mooc_actor_t t1, mooc_film_actor_t t2
+              where t1.uuid = t2.actor_id
+              and film_id = #{filmId}
+    </select>
+
 </mapper>

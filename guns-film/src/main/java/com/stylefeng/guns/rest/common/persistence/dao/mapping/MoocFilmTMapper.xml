@@ -19,8 +19,9 @@
         <result column="film_status" property="filmStatus"/>
     </resultMap>
 
-    <select id="getFilmDetailByName" parameterType="java.lang.String" resultType="com.stylefeng.guns.film.vo">
+    <select id="getFilmDetailByName" parameterType="java.lang.String" resultType="com.stylefeng.guns.film.vo.FilmDetailVO">
           SELECT
+                film.uuid as filmId,
                 film.film_name as filmName,
                 info.film_en_name as filmEnName,
                 film.img_address as imgAddress,
@@ -38,8 +39,9 @@
 
     </select>
 
-    <select id="getFilmDetailById" parameterType="java.lang.String" resultType="com.stylefeng.guns.film.vo">
+    <select id="getFilmDetailById" parameterType="java.lang.String" resultType="com.stylefeng.guns.film.vo.FilmDetailVO">
            SELECT
+                film.uuid as filmId,
                 film.film_name as filmName,
                 info.film_en_name as filmEnName,
                 film.img_address as imgAddress,
