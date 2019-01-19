@@ -410,7 +410,7 @@ public class DefaultFilmServiceImpl implements FilmServiceAPI {
     public FilmDetailVO getFilmDetail(int searchType, String searchParam) {
         FilmDetailVO filmDetailVO = null;
         if(searchType == 1){
-            filmDetailVO = moocFilmTMapper.getFilmDetailByName(searchParam);
+            filmDetailVO = moocFilmTMapper.getFilmDetailByName("%"+searchParam+"%");
         }else {
             filmDetailVO = moocFilmTMapper.getFilmDetailById(searchParam);
         }
