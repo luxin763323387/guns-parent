@@ -20,6 +20,8 @@ public class CinemaController {
     @RequestMapping(value = "getCinemas",method = RequestMethod.GET)
     public ResponseVO getCinemas(CinemaQueryVO cinemaQueryVO){
 
+        //
+        
         return null;
     }
 
