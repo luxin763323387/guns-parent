@@ -14,4 +14,42 @@
         <result column="price" property="price" />
     </resultMap>
 
+    <resultMap id="getFilmInfo" type="com.stylefeng.guns.cinema.vo.FilmInfoVO">
+        <result column="film_id" property="filmId"/>
+        <result column="film_name" property="filmName"/>
+        <result column="film_length" property="filmLength"/>
+        <result column="film_language" property="filmType"/>
+        <result column="film_cats" property="filmCats"/>
+        <result column="actors" property="actors"/>
+        <result column="img_address" property="imgAddress"/>
+        <collection property="filmFields" ofType="com.stylefeng.guns.cinema.vo.FilmFieldVO">
+            <result column="UUID" property="fieldId"/>
+            <result column="begin_time" property="beginTime"/>
+            <result column="end_time" property="endTime"/>
+            <result column="hall_name" property="hallName"/>
+            <result column="price" property="price"/>
+        </collection>
+    </resultMap>
+
+
+    <select id="getFilmInfos" parameterType="java.lang.Integer" resultMap="getFilmInfo">
+        SELECT
+            info.film_id,
+            info.film_name,
+            info.film_length,
+            info.film_language,
+            info.film_cats,
+            info.actors,
+            info.img_address,
+            field.UUID,
+            field.begin_time,
+            field.end_time,
+            field.hall_name,
+            field.price
+        FROM
+            mooc_hall_film_info_t info
+        LEFT JOIN mooc_field_t field
+        ON info.film_id = field.film_id
+        AND field.cinema_id = ${cinemaId}
+    </select>
 </mapper>
