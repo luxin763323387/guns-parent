@@ -15,6 +15,6 @@ public class CinemaQueryVO implements Serializable {
     //每页条数
     private Integer pageSize = 12;
     //当前页数
-    private Integer nowSize = 1;
+    private Integer nowPage= 1;
 
 }
