@@ -1,4 +1,4 @@
-package com.stylefeng.guns.rest.modular.cinema.service;
+package com.stylefeng.guns.rest.modular.order.service;
 
 import org.junit.Test;
 
